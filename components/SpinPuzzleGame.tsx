@@ -544,6 +544,8 @@ export default function SpinPuzzleGame() {
   const { locale, t } = useI18n();
   const activePulseTimer = useRef<number | null>(null);
   const timerOriginRef = useRef<number | null>(null);
+  const prevSolvedRef = useRef(false);
+  const lastMoveSourceRef = useRef<MoveSource | null>(null);
 
   const [puzzle, setPuzzle] = useState<PuzzleState>(() =>
     createPuzzle("medium", createSeededRandom(INITIAL_SEED.medium))
@@ -665,26 +667,11 @@ export default function SpinPuzzleGame() {
 
   const triggerMove = useCallback(
     (move: Move, source: MoveSource) => {
-      let shouldCelebrate = false;
-      let shouldStopTimer = false;
+      lastMoveSourceRef.current = source;
 
       setPuzzle((prev) => {
-        const prevConfig = DIFFICULTY_CONFIGS[prev.difficulty];
-        const prevSums = computeCurrentSums(prev.balls, prevConfig.tileRows, prevConfig.tileCols);
-        const wasSolved = allMatched(prevSums, prev.target);
-
         const nextBalls = rotateClockwise(prev.balls, move);
         const nextAppliedMoves = [...prev.appliedMoves, move];
-        const nextSums = computeCurrentSums(nextBalls, prevConfig.tileRows, prevConfig.tileCols);
-        const nowSolved = allMatched(nextSums, prev.target);
-
-        if (nowSolved && !wasSolved) {
-          shouldStopTimer = true;
-        }
-
-        if (source === "player" && nowSolved && !wasSolved) {
-          shouldCelebrate = true;
-        }
 
         return {
           ...prev,
@@ -705,16 +692,8 @@ export default function SpinPuzzleGame() {
           current && current.row === move.row && current.col === move.col ? null : current
         );
       }, MOVE_ACTIVE_MS);
-
-      if (shouldStopTimer) {
-        stopRoundTimer();
-      }
-
-      if (shouldCelebrate) {
-        setShowCelebration(true);
-      }
     },
-    [clearActivePulse, stopRoundTimer]
+    [clearActivePulse]
   );
 
   useEffect(() => {
@@ -748,11 +727,26 @@ export default function SpinPuzzleGame() {
     }
   }, [solved, solverQueue.length]);
 
+  useEffect(() => {
+    const wasSolved = prevSolvedRef.current;
+
+    if (!wasSolved && solved) {
+      stopRoundTimer();
+      if (lastMoveSourceRef.current === "player") {
+        setShowCelebration(true);
+      }
+    }
+
+    prevSolvedRef.current = solved;
+  }, [solved, stopRoundTimer]);
+
   const setDifficulty = useCallback((difficulty: DifficultyId) => {
     setShowCelebration(false);
     setSolverQueue([]);
     setSolverRunning(false);
     setActiveMove(null);
+    lastMoveSourceRef.current = null;
+    prevSolvedRef.current = false;
     setPuzzle(createPuzzle(difficulty, createSeededRandom(createRandomSeed())));
     startRoundTimer();
   }, [startRoundTimer]);
@@ -762,6 +756,8 @@ export default function SpinPuzzleGame() {
     setSolverQueue([]);
     setSolverRunning(false);
     setActiveMove(null);
+    lastMoveSourceRef.current = null;
+    prevSolvedRef.current = false;
     setPuzzle((prev) => ({
       ...prev,
       balls: cloneBallGrid(prev.startBalls),
@@ -775,6 +771,8 @@ export default function SpinPuzzleGame() {
     setSolverQueue([]);
     setSolverRunning(false);
     setActiveMove(null);
+    lastMoveSourceRef.current = null;
+    prevSolvedRef.current = false;
     setPuzzle((prev) => createPuzzle(prev.difficulty, createSeededRandom(createRandomSeed())));
     startRoundTimer();
   }, [startRoundTimer]);
