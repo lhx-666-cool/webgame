@@ -1,0 +1,239 @@
+.shell {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background:
+    radial-gradient(circle at 12% 6%, rgba(255, 123, 82, 0.22), transparent 30%),
+    radial-gradient(circle at 90% 10%, rgba(92, 159, 255, 0.2), transparent 35%),
+    linear-gradient(160deg, rgba(9, 16, 30, 0.96), rgba(7, 11, 20, 0.92));
+}
+
+.topStats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.65rem;
+}
+
+.statBox {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+}
+
+.statBox span {
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(218, 229, 242, 0.78);
+}
+
+.statBox strong {
+  font-size: 1.13rem;
+}
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(280px, 390px);
+  gap: 0.9rem;
+}
+
+.leftPane {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.boardWrap {
+  overflow: auto;
+  padding: 0.5rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(2, 7, 15, 0.72);
+}
+
+.board {
+  width: fit-content;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(var(--board-cols, 10), var(--cell-size, 26px));
+  grid-template-rows: repeat(var(--board-rows, 20), var(--cell-size, 26px));
+  gap: var(--cell-gap, 1px);
+  padding: 3px;
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.cell {
+  width: var(--cell-size, 26px);
+  height: var(--cell-size, 26px);
+  border-radius: var(--cell-radius, 3px);
+  background:
+    linear-gradient(155deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.05)),
+    var(--cell-color);
+}
+
+.status,
+.shortcuts {
+  margin: 0;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.84rem;
+}
+
+.rightPane {
+  display: grid;
+  gap: 0.7rem;
+  align-content: start;
+}
+
+.panel {
+  display: grid;
+  gap: 0.62rem;
+  padding: 0.78rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field span {
+  font-size: 0.8rem;
+  color: rgba(219, 231, 245, 0.8);
+}
+
+.buttonRow {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.primaryBtn,
+.secondaryBtn,
+.modeButton {
+  border: 1px solid transparent;
+  border-radius: 0.68rem;
+  padding: 0.45rem 0.72rem;
+  color: #f5f8fc;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.primaryBtn {
+  background: linear-gradient(120deg, #63e7cb, #7ebdff);
+  color: #091d2f;
+  font-weight: 700;
+}
+
+.secondaryBtn {
+  background: linear-gradient(120deg, #efd682, #d6e08c);
+  color: #2e2e19;
+  font-weight: 650;
+}
+
+.modeList {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.modeButton {
+  display: grid;
+  gap: 0.2rem;
+  text-align: left;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.modeButton strong {
+  font-size: 0.87rem;
+}
+
+.modeButton span {
+  font-size: 0.76rem;
+  color: rgba(214, 227, 242, 0.78);
+}
+
+.modeActive {
+  border-color: rgba(130, 209, 255, 0.72);
+  background: linear-gradient(150deg, rgba(89, 205, 250, 0.25), rgba(143, 115, 255, 0.12));
+}
+
+.guideList {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.32rem;
+}
+
+.guideList li {
+  font-size: 0.82rem;
+  color: rgba(223, 235, 248, 0.9);
+}
+
+.guideHint {
+  margin: 0;
+  font-size: 0.78rem;
+  color: rgba(219, 230, 242, 0.76);
+}
+
+.nextQueue {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.2rem;
+}
+
+.previewCard {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  flex: 0 0 auto;
+  border-radius: 0.6rem;
+  padding: 0.36rem;
+  min-width: 4.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.previewIndex {
+  color: rgba(217, 230, 244, 0.78);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 11px);
+  grid-template-rows: repeat(2, 11px);
+  gap: 2px;
+}
+
+.previewCell {
+  width: 11px;
+  height: 11px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 960px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+}
