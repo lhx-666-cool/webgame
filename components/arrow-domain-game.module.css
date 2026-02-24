@@ -1,0 +1,396 @@
+.shell {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(circle at 8% 8%, rgba(255, 191, 109, 0.22), transparent 34%),
+    radial-gradient(circle at 92% 0%, rgba(104, 188, 255, 0.22), transparent 40%),
+    linear-gradient(160deg, rgba(10, 18, 33, 0.96), rgba(7, 13, 24, 0.95));
+}
+
+.topStats {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+}
+
+.statBox {
+  display: grid;
+  gap: 0.22rem;
+  border-radius: 0.78rem;
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  background: linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  padding: 0.58rem 0.68rem;
+}
+
+.statBox span {
+  color: rgba(220, 232, 247, 0.76);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.statBox strong {
+  font-size: 1.02rem;
+}
+
+.mainGrid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: minmax(320px, 1fr) minmax(290px, 380px);
+}
+
+.boardPanel {
+  display: grid;
+}
+
+.boardWrap {
+  border-radius: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background:
+    radial-gradient(circle at 50% 6%, rgba(92, 170, 236, 0.24), transparent 36%),
+    rgba(7, 13, 24, 0.82);
+  padding: 0.95rem;
+}
+
+.matrixShell {
+  --rows: 6;
+  --cols: 6;
+  --cell-gap: 0.42rem;
+  --board-pad: 0.42rem;
+
+  margin: 0 auto;
+  width: min(100%, 760px);
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr) 2.2rem;
+  grid-template-rows: 2.2rem auto 2.2rem;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.axisTop,
+.axisBottom {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: var(--cell-gap);
+  padding-inline: var(--board-pad);
+}
+
+.axisLeft,
+.axisRight {
+  display: grid;
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  gap: var(--cell-gap);
+  padding-block: var(--board-pad);
+}
+
+.axisCell {
+  display: grid;
+  place-items: center;
+  color: #eef8ff;
+  font-weight: 800;
+  font-size: clamp(0.76rem, 1.35vw, 1.08rem);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.boardStage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(183, 223, 255, 0.35);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(145, 227, 255, 0.28), transparent 40%),
+    linear-gradient(180deg, rgba(14, 100, 182, 0.94), rgba(8, 64, 132, 0.95));
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(208, 236, 255, 0.18);
+}
+
+.boardStage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(183, 222, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(183, 222, 255, 0.15) 1px, transparent 1px);
+  background-size:
+    calc(100% / var(--cols)) 100%,
+    100% calc(100% / var(--rows));
+  pointer-events: none;
+}
+
+.cellGrid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  gap: var(--cell-gap);
+  padding: var(--board-pad);
+}
+
+.blockCell {
+  position: relative;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(196, 229, 255, 0.76);
+  background:
+    radial-gradient(circle at 30% 18%, rgba(225, 245, 255, 0.22), transparent 52%),
+    linear-gradient(145deg, rgba(42, 130, 215, 0.95), rgba(24, 90, 180, 0.95));
+  color: #f5fcff;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -4px 10px rgba(5, 35, 77, 0.4),
+    0 6px 12px rgba(2, 22, 46, 0.36);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.blockCell:disabled {
+  cursor: not-allowed;
+}
+
+.blockAlive {
+  opacity: 1;
+}
+
+.blockGone {
+  background: linear-gradient(150deg, rgba(16, 56, 102, 0.58), rgba(12, 44, 86, 0.52));
+  border-color: rgba(158, 191, 221, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(171, 203, 236, 0.14);
+}
+
+.cellGlow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 38% 26%, rgba(236, 251, 255, 0.25), transparent 62%);
+  pointer-events: none;
+}
+
+.arrowGlyph {
+  width: 82%;
+  height: 82%;
+  position: relative;
+  z-index: 1;
+}
+
+.arrowHub {
+  fill: rgba(228, 249, 255, 0.95);
+  stroke: rgba(211, 244, 255, 0.95);
+  stroke-width: 1.4;
+}
+
+.arrowStem {
+  stroke: rgba(241, 251, 255, 0.95);
+  stroke-width: 7;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 1px rgba(7, 47, 94, 0.5));
+}
+
+.arrowHead {
+  fill: rgba(241, 251, 255, 0.95);
+  filter: drop-shadow(0 0 1px rgba(7, 47, 94, 0.5));
+}
+
+.goneMark {
+  color: rgba(235, 246, 255, 0.6);
+  font-size: 1.18rem;
+}
+
+.blockActive {
+  border-color: rgba(255, 226, 158, 0.98);
+  box-shadow:
+    0 0 0 2px rgba(255, 214, 122, 0.42) inset,
+    0 0 20px rgba(250, 220, 141, 0.55);
+}
+
+.blockHit {
+  border-color: rgba(121, 238, 178, 0.98);
+  box-shadow:
+    0 0 0 2px rgba(115, 241, 180, 0.42) inset,
+    0 0 20px rgba(116, 244, 183, 0.54);
+}
+
+.blockHint {
+  border-color: rgba(255, 245, 168, 0.98);
+  box-shadow:
+    0 0 0 2px rgba(255, 238, 146, 0.4) inset,
+    0 0 18px rgba(255, 233, 124, 0.48);
+}
+
+.rayLayer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.rayHit,
+.rayMiss {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 0.14;
+}
+
+.rayHit {
+  stroke: rgba(139, 255, 201, 0.98);
+  filter: drop-shadow(0 0 5px rgba(111, 248, 195, 0.7));
+}
+
+.rayMiss {
+  stroke: rgba(255, 200, 141, 0.96);
+  filter: drop-shadow(0 0 5px rgba(255, 167, 118, 0.64));
+}
+
+.rightPane {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+}
+
+.panel {
+  display: grid;
+  gap: 0.6rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.75rem;
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.field span {
+  font-size: 0.8rem;
+  color: rgba(220, 232, 247, 0.84);
+}
+
+.segmented {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.segmentButton {
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  border-radius: 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ebf4ff;
+  font-family: inherit;
+  font-size: 0.77rem;
+  padding: 0.34rem 0.58rem;
+  cursor: pointer;
+}
+
+.segmentButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.segmentActive {
+  border-color: rgba(121, 216, 255, 0.85);
+  background: linear-gradient(140deg, rgba(84, 201, 246, 0.3), rgba(100, 242, 206, 0.2));
+}
+
+.buttonRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.48rem;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  border-radius: 0.65rem;
+  border: 1px solid transparent;
+  padding: 0.42rem 0.7rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.primaryBtn {
+  background: linear-gradient(120deg, #79e8d5, #7eb6ff);
+  color: #0a1d31;
+  font-weight: 700;
+}
+
+.secondaryBtn {
+  background: linear-gradient(120deg, #ebd79e, #e2b38b);
+  color: #322814;
+  font-weight: 650;
+}
+
+.primaryBtn:disabled,
+.secondaryBtn:disabled {
+  opacity: 0.56;
+  cursor: not-allowed;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.82rem;
+  color: rgba(224, 236, 248, 0.86);
+}
+
+.guideList {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.guideList li {
+  font-size: 0.81rem;
+  color: rgba(224, 236, 248, 0.92);
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  display: grid;
+  place-items: center;
+  background: rgba(3, 8, 16, 0.72);
+  backdrop-filter: blur(4px);
+  padding: 1rem;
+}
+
+.modalCard {
+  width: min(420px, 100%);
+  display: grid;
+  gap: 0.65rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  padding: 0.95rem;
+  background:
+    radial-gradient(circle at 50% -8%, rgba(111, 225, 255, 0.32), transparent 40%),
+    linear-gradient(165deg, rgba(18, 33, 55, 0.97), rgba(10, 18, 31, 0.98));
+}
+
+.modalCard h3,
+.modalCard p {
+  margin: 0;
+}
+
+@media (max-width: 980px) {
+  .mainGrid {
+    grid-template-columns: 1fr;
+  }
+}

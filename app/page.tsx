@@ -100,6 +100,19 @@ export default function HomePage() {
           t("home.tags.spin.solver"),
           t("home.tags.spin.difficulty")
         ]
+      },
+      {
+        id: "arrow",
+        href: "/games/arrow-domain",
+        title: t("home.arrowTitle"),
+        subtitle: t("home.arrowSubtitle"),
+        description: t("home.arrowDescription"),
+        tags: [
+          t("home.tags.arrow.chain"),
+          t("home.tags.arrow.eightDir"),
+          t("home.tags.arrow.oneShot"),
+          t("home.tags.arrow.difficulty")
+        ]
       }
     ],
     [t]

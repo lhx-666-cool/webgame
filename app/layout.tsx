@@ -6,7 +6,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Grid Arcade",
   description:
-    "A Next.js mini game hub featuring Conway's Game of Life, multi-mode Tetris, and Spin Sum Puzzle."
+    "A Next.js mini game hub featuring Conway's Game of Life, multi-mode Tetris, Spin Sum Puzzle, and Arrow Matrix."
 };
 
 export default function RootLayout({

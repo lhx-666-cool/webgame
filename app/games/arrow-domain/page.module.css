@@ -1,0 +1,32 @@
+.wrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.headRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.headRow p {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(219, 231, 244, 0.7);
+  font-size: 0.78rem;
+}
+
+.headRow h1 {
+  margin: 0.18rem 0 0;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+}
+
+.backLink {
+  text-decoration: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}

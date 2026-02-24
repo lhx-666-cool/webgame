@@ -149,6 +149,30 @@ const formatElapsed = (elapsedMs: number) => {
   return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 };
 
+const countDigits = (value: number) => Math.max(1, Math.abs(Math.trunc(value)).toString().length);
+
+const getDigitScale = (value: number, variant: "target" | "current") => {
+  const digits = countDigits(value);
+  if (digits <= 2) {
+    return 1;
+  }
+
+  const base = variant === "target" ? 0.86 : 0.9;
+  const perDigitDrop = variant === "target" ? 0.14 : 0.12;
+  return Math.max(0.55, base - (digits - 3) * perDigitDrop);
+};
+
+const getDigitSpacing = (value: number) => {
+  const digits = countDigits(value);
+  if (digits <= 2) {
+    return "0.01em";
+  }
+  if (digits === 3) {
+    return "-0.015em";
+  }
+  return "-0.03em";
+};
+
 const computeCurrentSums = (balls: BallGrid, tileRows: number, tileCols: number) => {
   const sums: number[][] = [];
 
@@ -860,8 +884,8 @@ export default function SpinPuzzleGame() {
                       const matched = current === target;
                       const active = activeMove?.row === row && activeMove?.col === col;
 
-                      return (
-                        <button
+                    return (
+                      <button
                           key={`tile-${row}-${col}`}
                           type="button"
                           className={`${styles.tile} ${matched ? styles.tileMatched : styles.tileUnmatched} ${
@@ -881,8 +905,28 @@ export default function SpinPuzzleGame() {
                           })}
                         >
                           <span className={styles.tileContent}>
-                            <span className={styles.targetValue}>{target.toLocaleString(locale)}</span>
-                            <strong className={styles.currentValue}>{current.toLocaleString(locale)}</strong>
+                            <span
+                              className={styles.targetValue}
+                              style={
+                                {
+                                  "--digit-scale": getDigitScale(target, "target"),
+                                  "--digit-spacing": getDigitSpacing(target)
+                                } as React.CSSProperties
+                              }
+                            >
+                              {target.toLocaleString(locale)}
+                            </span>
+                            <strong
+                              className={styles.currentValue}
+                              style={
+                                {
+                                  "--digit-scale": getDigitScale(current, "current"),
+                                  "--digit-spacing": getDigitSpacing(current)
+                                } as React.CSSProperties
+                              }
+                            >
+                              {current.toLocaleString(locale)}
+                            </strong>
                           </span>
                         </button>
                       );

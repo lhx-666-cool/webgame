@@ -24,6 +24,7 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       navPlayLife: "Play Life",
       navPlayTetris: "Play Tetris",
       navPlaySpin: "Play Spin Puzzle",
+      navPlayArrow: "Play Arrow Matrix",
       language: "Language"
     },
     home: {
@@ -47,6 +48,10 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       spinSubtitle: "Rotate corners to match sums",
       spinDescription:
         "Click tiles to rotate the four corner balls clockwise and match each target sum.",
+      arrowTitle: "Arrow Matrix",
+      arrowSubtitle: "One-shot 8-direction chain puzzle",
+      arrowDescription:
+        "Pick one block to trigger a full chain reaction. Clear all blocks in a single attempt.",
       tags: {
         life: {
           rule: "B3/S23",
@@ -65,6 +70,12 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
           rotate: "Clockwise Rotate",
           solver: "Auto Solver",
           difficulty: "3 Difficulty Levels"
+        },
+        arrow: {
+          chain: "Chain Reaction",
+          eightDir: "8 Directions",
+          oneShot: "One-shot Clear",
+          difficulty: "5 Difficulty Levels"
         }
       }
     },
@@ -81,6 +92,11 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
     spinPage: {
       featured: "Featured Game",
       title: "Spin Sum Puzzle",
+      back: "Back to Lobby"
+    },
+    arrowPage: {
+      featured: "Featured Game",
+      title: "Arrow Matrix",
       back: "Back to Lobby"
     },
     spin: {
@@ -130,6 +146,66 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       },
       aria: {
         tile: "Tile row {row} col {col}, current {current}, target {target}"
+      }
+    },
+    arrow: {
+      stats: {
+        remaining: "Blocks Left",
+        attempts: "Attempts",
+        board: "Board",
+        status: "Status"
+      },
+      status: {
+        idle: "Ready",
+        animating: "Resolving Chain...",
+        success: "Cleared",
+        fail: "Failed"
+      },
+      controls: {
+        title: "Puzzle Controls",
+        difficulty: "Difficulty",
+        restart: "Restart Puzzle",
+        newPuzzle: "New Puzzle",
+        showSolution: "Show One Solution"
+      },
+      difficulty: {
+        easy: "Easy",
+        normal: "Normal",
+        hard: "Hard",
+        expert: "Expert",
+        master: "Master"
+      },
+      guide: {
+        title: "How To Play",
+        hint: "Choose one block as the start. A single cell may contain multiple arrows and each one is resolved.",
+        1: "An activated block disappears first, then each arrow in that block searches the nearest alive block in its direction.",
+        2: "Arrows support 8 directions: N, NE, E, SE, S, SW, W, NW.",
+        3: "You win only if a single chain clears every block.",
+        4: "If any block remains, the attempt fails and the board auto-resets to the initial puzzle."
+      },
+      messages: {
+        success: "Perfect clear in one chain!",
+        fail: "Chain ended before all blocks were cleared.",
+        resetting: "Board reset to initial layout."
+      },
+      modal: {
+        title: "Chain Success!",
+        description: "You cleared all blocks in one attempt.",
+        replay: "Replay This Puzzle",
+        next: "Next Puzzle"
+      },
+      aria: {
+        block: "Block row {row} col {col}, directions {dir}"
+      },
+      dir: {
+        N: "up",
+        NE: "up-right",
+        E: "right",
+        SE: "down-right",
+        S: "down",
+        SW: "down-left",
+        W: "left",
+        NW: "up-left"
       }
     },
     tetris: {
@@ -317,6 +393,7 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       navPlayLife: "开始生命游戏",
       navPlayTetris: "开始俄罗斯方块",
       navPlaySpin: "开始旋转数谜",
+      navPlayArrow: "开始箭阵谜域",
       language: "语言"
     },
     home: {
@@ -337,6 +414,9 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       spinTitle: "旋转数谜",
       spinSubtitle: "旋转四角，匹配目标和",
       spinDescription: "点击方块可顺时针旋转四个角上的数字球，让周围四球之和匹配目标值。",
+      arrowTitle: "箭阵谜域",
+      arrowSubtitle: "一次选择，八向连锁",
+      arrowDescription: "选择一个起点方块触发箭头连锁，必须一次清空全盘才算成功。",
       tags: {
         life: {
           rule: "B3/S23",
@@ -355,6 +435,12 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
           rotate: "顺时针旋转",
           solver: "自动求解",
           difficulty: "三档难度"
+        },
+        arrow: {
+          chain: "连锁反应",
+          eightDir: "八方向箭头",
+          oneShot: "一次清盘",
+          difficulty: "五档难度"
         }
       }
     },
@@ -371,6 +457,11 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
     spinPage: {
       featured: "当前主打",
       title: "旋转数谜",
+      back: "返回大厅"
+    },
+    arrowPage: {
+      featured: "当前主打",
+      title: "箭阵谜域",
       back: "返回大厅"
     },
     spin: {
@@ -420,6 +511,66 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       },
       aria: {
         tile: "第{row}行第{col}列方块，当前和{current}，目标{target}"
+      }
+    },
+    arrow: {
+      stats: {
+        remaining: "剩余方块",
+        attempts: "尝试次数",
+        board: "盘面",
+        status: "状态"
+      },
+      status: {
+        idle: "待挑战",
+        animating: "连锁验证中...",
+        success: "已清空",
+        fail: "失败"
+      },
+      controls: {
+        title: "题目控制",
+        difficulty: "难度",
+        restart: "重开本题",
+        newPuzzle: "下一题",
+        showSolution: "显示一个可行解"
+      },
+      difficulty: {
+        easy: "简单",
+        normal: "普通",
+        hard: "困难",
+        expert: "专家",
+        master: "大师"
+      },
+      guide: {
+        title: "玩法说明",
+        hint: "只需选择一个起点，系统会完整播放并判定本次连锁结果；单格可含多个箭头。",
+        1: "当前激活方块会先消失，再由该格中的所有箭头分别沿各自方向寻找最近的存活方块。",
+        2: "箭头支持八方向：上、右上、右、右下、下、左下、左、左上。",
+        3: "必须一次连锁清空所有方块才算成功。",
+        4: "若有剩余方块则判定失败，并自动回到本题初始盘面。"
+      },
+      messages: {
+        success: "一击清盘，挑战成功！",
+        fail: "连锁结束但未清空全盘。",
+        resetting: "已自动恢复到本题初始盘面。"
+      },
+      modal: {
+        title: "连锁成功！",
+        description: "你一次清空了所有方块。",
+        replay: "重开本题",
+        next: "下一题"
+      },
+      aria: {
+        block: "第{row}行第{col}列方块，箭头方向组{dir}"
+      },
+      dir: {
+        N: "上",
+        NE: "右上",
+        E: "右",
+        SE: "右下",
+        S: "下",
+        SW: "左下",
+        W: "左",
+        NW: "左上"
       }
     },
     tetris: {
@@ -607,6 +758,7 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       navPlayLife: "Jugar Life",
       navPlayTetris: "Jugar Tetris",
       navPlaySpin: "Jugar Giro Suma",
+      navPlayArrow: "Jugar Matriz de Flechas",
       language: "Idioma"
     },
     home: {
@@ -630,6 +782,10 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       spinSubtitle: "Gira esquinas para igualar sumas",
       spinDescription:
         "Pulsa un bloque para girar en sentido horario las cuatro bolas de esquina y hacer coincidir la suma objetivo.",
+      arrowTitle: "Matriz de Flechas",
+      arrowSubtitle: "Cadena de 8 direcciones en un solo intento",
+      arrowDescription:
+        "Elige un solo bloque para activar la cadena. Debes limpiar todo el tablero en una sola jugada.",
       tags: {
         life: {
           rule: "B3/S23",
@@ -648,6 +804,12 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
           rotate: "Giro Horario",
           solver: "Solución Automática",
           difficulty: "3 Niveles"
+        },
+        arrow: {
+          chain: "Reacción en Cadena",
+          eightDir: "8 Direcciones",
+          oneShot: "Limpieza Única",
+          difficulty: "5 Niveles"
         }
       }
     },
@@ -664,6 +826,11 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
     spinPage: {
       featured: "Juego Destacado",
       title: "Rompecabezas Giro Suma",
+      back: "Volver al Inicio"
+    },
+    arrowPage: {
+      featured: "Juego Destacado",
+      title: "Matriz de Flechas",
       back: "Volver al Inicio"
     },
     spin: {
@@ -713,6 +880,66 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       },
       aria: {
         tile: "Bloque fila {row} columna {col}, actual {current}, objetivo {target}"
+      }
+    },
+    arrow: {
+      stats: {
+        remaining: "Bloques Restantes",
+        attempts: "Intentos",
+        board: "Tablero",
+        status: "Estado"
+      },
+      status: {
+        idle: "Listo",
+        animating: "Resolviendo cadena...",
+        success: "Completado",
+        fail: "Fallido"
+      },
+      controls: {
+        title: "Controles",
+        difficulty: "Dificultad",
+        restart: "Reiniciar Puzzle",
+        newPuzzle: "Nuevo Puzzle",
+        showSolution: "Mostrar una solución"
+      },
+      difficulty: {
+        easy: "Fácil",
+        normal: "Normal",
+        hard: "Difícil",
+        expert: "Experto",
+        master: "Maestro"
+      },
+      guide: {
+        title: "Cómo Jugar",
+        hint: "Elige un bloque inicial y el sistema reproducirá toda la cadena con animación completa.",
+        1: "El bloque activado se elimina primero y su flecha busca el bloque vivo más cercano en esa dirección.",
+        2: "Hay 8 direcciones posibles: N, NE, E, SE, S, SW, W, NW.",
+        3: "Solo ganas si una cadena elimina todos los bloques.",
+        4: "Si queda cualquier bloque, fallas y el tablero vuelve al estado inicial."
+      },
+      messages: {
+        success: "¡Limpieza perfecta en una cadena!",
+        fail: "La cadena terminó antes de limpiar todo.",
+        resetting: "Tablero restaurado al estado inicial."
+      },
+      modal: {
+        title: "¡Cadena Exitosa!",
+        description: "Limpiaste todos los bloques en un intento.",
+        replay: "Repetir Este Puzzle",
+        next: "Siguiente Puzzle"
+      },
+      aria: {
+        block: "Bloque fila {row} columna {col}, dirección {dir}"
+      },
+      dir: {
+        N: "arriba",
+        NE: "arriba derecha",
+        E: "derecha",
+        SE: "abajo derecha",
+        S: "abajo",
+        SW: "abajo izquierda",
+        W: "izquierda",
+        NW: "arriba izquierda"
       }
     },
     life: {
@@ -839,6 +1066,7 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       navPlayLife: "ライフゲーム",
       navPlayTetris: "テトリス",
       navPlaySpin: "回転数パズル",
+      navPlayArrow: "矢印マトリクス",
       language: "言語"
     },
     home: {
@@ -861,6 +1089,10 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       spinSubtitle: "四隅を回して目標和に合わせる",
       spinDescription:
         "マスをクリックすると四隅の数字ボールが時計回りに回転し、目標の合計に合わせます。",
+      arrowTitle: "矢印マトリクス",
+      arrowSubtitle: "8方向ワンショット連鎖パズル",
+      arrowDescription:
+        "開始マスを1つ選ぶと連鎖が始まります。1回で全ブロックを消せばクリアです。",
       tags: {
         life: {
           rule: "B3/S23",
@@ -879,6 +1111,12 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
           rotate: "時計回り回転",
           solver: "自動解答",
           difficulty: "3段階難易度"
+        },
+        arrow: {
+          chain: "連鎖反応",
+          eightDir: "8方向",
+          oneShot: "ワンショット全消し",
+          difficulty: "5段階難易度"
         }
       }
     },
@@ -895,6 +1133,11 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
     spinPage: {
       featured: "注目ゲーム",
       title: "回転数パズル",
+      back: "ロビーに戻る"
+    },
+    arrowPage: {
+      featured: "注目ゲーム",
+      title: "矢印マトリクス",
       back: "ロビーに戻る"
     },
     spin: {
@@ -944,6 +1187,66 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       },
       aria: {
         tile: "{row}行{col}列のマス、現在{current}、目標{target}"
+      }
+    },
+    arrow: {
+      stats: {
+        remaining: "残りブロック",
+        attempts: "挑戦回数",
+        board: "盤面",
+        status: "状態"
+      },
+      status: {
+        idle: "待機中",
+        animating: "連鎖検証中...",
+        success: "クリア",
+        fail: "失敗"
+      },
+      controls: {
+        title: "パズル操作",
+        difficulty: "難易度",
+        restart: "この問題をリスタート",
+        newPuzzle: "新しい問題",
+        showSolution: "解の候補を表示"
+      },
+      difficulty: {
+        easy: "初級",
+        normal: "通常",
+        hard: "上級",
+        expert: "エキスパート",
+        master: "マスター"
+      },
+      guide: {
+        title: "遊び方",
+        hint: "開始ブロックを1つ選ぶと、連鎖判定がアニメーション付きで再生されます。",
+        1: "有効化されたブロックは先に消え、その矢印方向に最も近い生存ブロックを探します。",
+        2: "矢印は8方向（N, NE, E, SE, S, SW, W, NW）に対応します。",
+        3: "1回の連鎖で全ブロックを消せた場合のみ成功です。",
+        4: "1つでも残ると失敗となり、盤面は初期配置へ自動リセットされます。"
+      },
+      messages: {
+        success: "1連鎖で全消し成功！",
+        fail: "連鎖が終了し、ブロックが残りました。",
+        resetting: "初期盤面にリセットしました。"
+      },
+      modal: {
+        title: "連鎖成功！",
+        description: "1回の挑戦で全ブロックを消しました。",
+        replay: "この問題を再挑戦",
+        next: "次の問題"
+      },
+      aria: {
+        block: "{row}行{col}列のブロック、方向 {dir}"
+      },
+      dir: {
+        N: "上",
+        NE: "右上",
+        E: "右",
+        SE: "右下",
+        S: "下",
+        SW: "左下",
+        W: "左",
+        NW: "左上"
       }
     },
     life: {
@@ -1070,6 +1373,7 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       navPlayLife: "Jouer à Life",
       navPlayTetris: "Jouer à Tetris",
       navPlaySpin: "Jouer Rotation Somme",
+      navPlayArrow: "Jouer Matrice Fléchée",
       language: "Langue"
     },
     home: {
@@ -1093,6 +1397,10 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       spinSubtitle: "Tournez les coins pour atteindre la somme",
       spinDescription:
         "Cliquez sur une case pour faire tourner dans le sens horaire ses quatre billes d'angle et atteindre les sommes cibles.",
+      arrowTitle: "Matrice Fléchée",
+      arrowSubtitle: "Puzzle à chaîne 8 directions en un seul coup",
+      arrowDescription:
+        "Choisissez une case de départ pour lancer la chaîne. Il faut vider tout le plateau en une tentative.",
       tags: {
         life: {
           rule: "B3/S23",
@@ -1111,6 +1419,12 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
           rotate: "Rotation Horaire",
           solver: "Resolution Auto",
           difficulty: "3 Niveaux"
+        },
+        arrow: {
+          chain: "Réaction en Chaîne",
+          eightDir: "8 Directions",
+          oneShot: "Nettoyage Unique",
+          difficulty: "5 Niveaux"
         }
       }
     },
@@ -1127,6 +1441,11 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
     spinPage: {
       featured: "Jeu Vedette",
       title: "Enigme Rotation Somme",
+      back: "Retour au Lobby"
+    },
+    arrowPage: {
+      featured: "Jeu Vedette",
+      title: "Matrice Fléchée",
       back: "Retour au Lobby"
     },
     spin: {
@@ -1176,6 +1495,66 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       },
       aria: {
         tile: "Case ligne {row} colonne {col}, actuel {current}, cible {target}"
+      }
+    },
+    arrow: {
+      stats: {
+        remaining: "Blocs Restants",
+        attempts: "Tentatives",
+        board: "Plateau",
+        status: "Statut"
+      },
+      status: {
+        idle: "Prêt",
+        animating: "Résolution de la chaîne...",
+        success: "Réussi",
+        fail: "Échec"
+      },
+      controls: {
+        title: "Contrôles",
+        difficulty: "Difficulté",
+        restart: "Rejouer ce puzzle",
+        newPuzzle: "Nouveau Puzzle",
+        showSolution: "Afficher une solution"
+      },
+      difficulty: {
+        easy: "Facile",
+        normal: "Normal",
+        hard: "Difficile",
+        expert: "Expert",
+        master: "Maître"
+      },
+      guide: {
+        title: "Règles",
+        hint: "Choisissez un bloc de départ. Le système joue toute la chaîne avec animation complète.",
+        1: "Le bloc activé disparaît d'abord, puis sa flèche cherche le bloc vivant le plus proche dans cette direction.",
+        2: "Les flèches couvrent 8 directions : N, NE, E, SE, S, SW, W, NW.",
+        3: "Vous gagnez uniquement si une seule chaîne supprime tous les blocs.",
+        4: "S'il reste des blocs, c'est un échec et le plateau revient automatiquement à l'état initial."
+      },
+      messages: {
+        success: "Nettoyage parfait en une chaîne !",
+        fail: "La chaîne s'est terminée avant de tout supprimer.",
+        resetting: "Plateau réinitialisé à la configuration initiale."
+      },
+      modal: {
+        title: "Chaîne Réussie !",
+        description: "Vous avez effacé tous les blocs en une tentative.",
+        replay: "Rejouer ce Puzzle",
+        next: "Puzzle Suivant"
+      },
+      aria: {
+        block: "Bloc ligne {row} colonne {col}, direction {dir}"
+      },
+      dir: {
+        N: "haut",
+        NE: "haut droite",
+        E: "droite",
+        SE: "bas droite",
+        S: "bas",
+        SW: "bas gauche",
+        W: "gauche",
+        NW: "haut gauche"
       }
     },
     life: {
@@ -1302,6 +1681,7 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       navPlayLife: "Life spielen",
       navPlayTetris: "Tetris spielen",
       navPlaySpin: "Drehsummen spielen",
+      navPlayArrow: "Pfeilmatrix spielen",
       language: "Sprache"
     },
     home: {
@@ -1325,6 +1705,10 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       spinSubtitle: "Ecken drehen, Zielsumme treffen",
       spinDescription:
         "Klicke ein Feld an, um seine vier Eckkugeln im Uhrzeigersinn zu drehen und die Zielsumme zu erreichen.",
+      arrowTitle: "Pfeilmatrix",
+      arrowSubtitle: "8-Richtungs-Kettenpuzzle mit einem Start",
+      arrowDescription:
+        "Wähle genau einen Startblock. Du gewinnst nur, wenn die Kette alle Blöcke in einem Versuch entfernt.",
       tags: {
         life: {
           rule: "B3/S23",
@@ -1343,6 +1727,12 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
           rotate: "Uhrzeigersinn",
           solver: "Auto-Losung",
           difficulty: "3 Schwierigkeitsstufen"
+        },
+        arrow: {
+          chain: "Kettenreaktion",
+          eightDir: "8 Richtungen",
+          oneShot: "Ein-Versuch-Clear",
+          difficulty: "5 Schwierigkeitsstufen"
         }
       }
     },
@@ -1359,6 +1749,11 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
     spinPage: {
       featured: "Hervorgehobenes Spiel",
       title: "Drehsummen-Ratsel",
+      back: "Zurück zur Lobby"
+    },
+    arrowPage: {
+      featured: "Hervorgehobenes Spiel",
+      title: "Pfeilmatrix",
       back: "Zurück zur Lobby"
     },
     spin: {
@@ -1408,6 +1803,66 @@ const DICTIONARIES: Record<Locale, Dictionary> = {
       },
       aria: {
         tile: "Feld Zeile {row} Spalte {col}, aktuell {current}, Ziel {target}"
+      }
+    },
+    arrow: {
+      stats: {
+        remaining: "Verbleibende Blöcke",
+        attempts: "Versuche",
+        board: "Spielfeld",
+        status: "Status"
+      },
+      status: {
+        idle: "Bereit",
+        animating: "Kette wird aufgelöst...",
+        success: "Erfolgreich",
+        fail: "Fehlgeschlagen"
+      },
+      controls: {
+        title: "Puzzle-Steuerung",
+        difficulty: "Schwierigkeit",
+        restart: "Puzzle neu starten",
+        newPuzzle: "Neues Puzzle",
+        showSolution: "Eine Lösung anzeigen"
+      },
+      difficulty: {
+        easy: "Leicht",
+        normal: "Normal",
+        hard: "Schwer",
+        expert: "Experte",
+        master: "Meister"
+      },
+      guide: {
+        title: "Spielhilfe",
+        hint: "Wähle einen Startblock. Danach wird die gesamte Kette mit voller Animation abgespielt.",
+        1: "Ein aktivierter Block verschwindet zuerst und sucht dann in Pfeilrichtung den nächstgelegenen lebenden Block.",
+        2: "Es gibt 8 Richtungen: N, NE, E, SE, S, SW, W, NW.",
+        3: "Gewonnen ist nur, wenn eine einzige Kette alle Blöcke entfernt.",
+        4: "Bleibt ein Block übrig, ist der Versuch fehlgeschlagen und das Board wird automatisch zurückgesetzt."
+      },
+      messages: {
+        success: "Perfekter Clear in einer Kette!",
+        fail: "Die Kette endete, bevor alle Blöcke entfernt wurden.",
+        resetting: "Board wurde auf das Anfangslayout zurückgesetzt."
+      },
+      modal: {
+        title: "Kette Erfolgreich!",
+        description: "Du hast alle Blöcke in einem Versuch entfernt.",
+        replay: "Dieses Puzzle Wiederholen",
+        next: "Nächstes Puzzle"
+      },
+      aria: {
+        block: "Block Zeile {row} Spalte {col}, Richtung {dir}"
+      },
+      dir: {
+        N: "oben",
+        NE: "oben rechts",
+        E: "rechts",
+        SE: "unten rechts",
+        S: "unten",
+        SW: "unten links",
+        W: "links",
+        NW: "oben links"
       }
     },
     life: {

@@ -7,6 +7,7 @@ A browser mini-game site built with Next.js (App Router + TypeScript).
 - `/games/life`: Conway's Game of Life
 - `/games/tetris`: Tetra Fusion (classic / cascade gravity / sand fusion)
 - `/games/rotate-sum`: Spin Sum Puzzle (rotating corner balls + guaranteed solvable puzzles)
+- `/games/arrow-domain`: Arrow Matrix (8-direction one-shot chain elimination)
 
 ## Features implemented
 
@@ -30,6 +31,7 @@ A browser mini-game site built with Next.js (App Router + TypeScript).
 - Supported languages: English, 简体中文, Español, 日本語, Français, Deutsch
 - Tetra Fusion with in-game mode guide, physics mode switch, and keyboard controls
 - Spin Sum Puzzle with 3 difficulty levels, guaranteed solvable generation, auto-solver playback, and celebration modal
+- Arrow Matrix with 5 difficulty tiers, guaranteed solvable generation, full chain animation, and success/failure flow
 
 ## Run locally
 

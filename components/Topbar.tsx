@@ -23,6 +23,9 @@ export default function Topbar() {
         <Link href="/games/rotate-sum" className="top-link">
           {t("app.navPlaySpin")}
         </Link>
+        <Link href="/games/arrow-domain" className="top-link">
+          {t("app.navPlayArrow")}
+        </Link>
 
         <label className="lang-control" htmlFor="lang-picker">
           <span>{t("app.language")}</span>

@@ -112,10 +112,9 @@
 }
 
 .tileContent {
+  position: relative;
   width: 100%;
-  display: grid;
-  justify-items: center;
-  gap: 0.16rem;
+  height: 100%;
   transform: rotate(-45deg);
 }
 
@@ -144,26 +143,48 @@
 }
 
 .targetValue {
-  border-radius: 999px;
-  padding: 0.1rem 0.4rem;
-  background: rgba(231, 235, 241, 0.85);
+  position: absolute;
+  left: 50%;
+  top: 6%;
+  width: min(calc(var(--tile-size) * 0.94), 3.5rem);
+  height: min(calc(var(--tile-size) * 0.52), 1.7rem);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(0.06rem, 0.18vw, 0.14rem) 0 0;
+  background: linear-gradient(180deg, rgba(242, 246, 252, 0.96), rgba(218, 227, 238, 0.9));
   color: #1d2734;
-  font-size: clamp(0.64rem, 1.6vw, 0.78rem);
+  font-size: calc(clamp(0.58rem, 1.45vw, 0.74rem) * var(--digit-scale, 1));
   font-weight: 700;
-  min-width: 2.8rem;
-  line-height: 1.1;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--digit-spacing, 0.01em);
   text-align: center;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: translateX(-50%);
+  border: 1px solid rgba(173, 187, 206, 0.82);
 }
 
 .currentValue {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
   margin: 0;
-  border-radius: 0.42rem;
-  padding: 0.12rem 0.44rem;
-  font-size: clamp(0.72rem, 1.8vw, 0.9rem);
-  line-height: 1.1;
-  min-width: 2.8rem;
+  width: min(calc(var(--tile-size) * 0.94), 3.5rem);
+  height: min(calc(var(--tile-size) * 0.52), 1.7rem);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 0 clamp(0.08rem, 0.2vw, 0.16rem);
+  font-size: calc(clamp(0.62rem, 1.65vw, 0.86rem) * var(--digit-scale, 1));
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--digit-spacing, 0.01em);
   text-align: center;
-  background: rgba(17, 23, 35, 0.75);
+  background: linear-gradient(180deg, rgba(30, 42, 64, 0.96), rgba(17, 26, 40, 0.92));
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform: translateX(-50%);
+  border: 1px solid rgba(95, 113, 140, 0.82);
 }
 
 .tileMatched .currentValue {
